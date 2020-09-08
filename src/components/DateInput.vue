@@ -131,9 +131,10 @@ export default {
      */
     inputBlurred () {
       if (this.typeable && isNaN(Date.parse(this.input.value))) {
-        this.clearDate()
-        this.input.value = null
-        this.typedDate = null
+		//removed by DKLRAS because isNAN returns true on danish locale
+        //this.clearDate()
+        //this.input.value = null
+        //this.typedDate = null
       }
 
       this.$emit('closeCalendar')
