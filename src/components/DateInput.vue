@@ -74,37 +74,24 @@ export default {
     required: Boolean,
     typeable: Boolean,
     bootstrapStyling: Boolean,
-    useUtc: Boolean,
+    useUtc: Boolean
   },
   data() {
     const constructedDateUtils = makeDateUtils(this.useUtc);
     return {
       input: null,
       typedDate: false,
-      utils: constructedDateUtils,
+      utils: constructedDateUtils
     };
   },
   computed: {
     formattedValue() {
-      alert("format 1");
       if (!this.selectedDate) {
-        alert("format 2");
         return null;
       }
       if (this.typedDate) {
-        alert("format 3");
         return this.typedDate;
       }
-      alert("format 4");
-      let per = this.format(this.selectedDate);
-      alert(per);
-
-      let hans = this.utils.formatDate(
-        new Date(this.selectedDate),
-        this.format,
-        this.translation
-      );
-      alert(hans);
       return typeof this.format === "function"
         ? this.format(this.selectedDate)
         : this.utils.formatDate(
@@ -122,13 +109,12 @@ export default {
         return { "form-control": true, ...this.inputClass };
       }
       return this.inputClass;
-    },
+    }
   },
   watch: {
     resetTypedDate() {
-      alert("reset");
       this.typedDate = false;
-    },
+    }
   },
   methods: {
     showCalendar() {
@@ -140,54 +126,49 @@ export default {
      */
     parseTypedDate(event) {
       // close calendar if escape or enter are pressed
-      alert("1");
       if (
         [
           27, // escape
-          13, // enter
+          13 // enter
         ].includes(event.keyCode)
       ) {
         this.input.blur();
       }
 
-      // if (this.typeable) {
-      //   alert("2");
-      //   const typedDate = Date.parse(this.input.value);
-      //   if (!isNaN(typedDate)) {
-      //     alert("3");
-      //     this.typedDate = this.input.value;
-      //     this.$emit("typedDate", new Date(this.typedDate));
-      //   }
-      // }
+      if (this.typeable) {
+        const typedDate = Date.parse(this.input.value);
+        if (!isNaN(typedDate)) {
+          this.typedDate = this.input.value;
+          this.$emit("typedDate", new Date(this.typedDate));
+        }
+      }
     },
     /**
      * nullify the typed date to defer to regular formatting
      * called once the input is blurred
      */
     inputBlurred() {
-      //if (this.typeable && isNaN(Date.parse(this.input.value))) {
-      /**
-       *removed by DKLRAS because isNAN returns true on danish locale
-       * this.clearDate()
-       * this.input.value = null
-       * this.typedDate = null
-       */
-      //}
-      alert("lukket");
-      console.log("lukket!");
-      //this.$emit("closeCalendar");
+      if (this.typeable && isNaN(Date.parse(this.input.value))) {
+        /**
+         *removed by DKLRAS because isNAN returns true on danish locale
+         * this.clearDate()
+         * this.input.value = null
+         * this.typedDate = null
+         */
+      }
+
+      this.$emit("closeCalendar");
     },
     /**
      * emit a clearDate event
      */
     clearDate() {
-      alert("clearing");
-      // this.$emit("clearDate");
-    },
+      this.$emit("clearDate");
+    }
   },
   mounted() {
     this.input = this.$el.querySelector("input");
-  },
+  }
 };
 // eslint-disable-next-line
 </script>

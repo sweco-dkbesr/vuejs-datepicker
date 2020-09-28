@@ -108,25 +108,25 @@ export default {
     DateInput,
     PickerDay,
     PickerMonth,
-    PickerYear,
+    PickerYear
   },
   props: {
     value: {
-      validator: (val) => utils.validateDateInput(val),
+      validator: val => utils.validateDateInput(val)
     },
     name: String,
     refName: String,
     id: String,
     format: {
       type: [String, Function],
-      default: "dd MMM yyyy",
+      default: "dd MMM yyyy"
     },
     language: {
       type: Object,
-      default: () => en,
+      default: () => en
     },
     openDate: {
-      validator: (val) => utils.validateDateInput(val),
+      validator: val => utils.validateDateInput(val)
     },
     dayCellContent: Function,
     fullMonthName: Boolean,
@@ -151,12 +151,12 @@ export default {
     useUtc: Boolean,
     minimumView: {
       type: String,
-      default: "day",
+      default: "day"
     },
     maximumView: {
       type: String,
-      default: "year",
-    },
+      default: "year"
+    }
   },
   data() {
     const startDate = this.openDate ? new Date(this.openDate) : new Date();
@@ -186,7 +186,7 @@ export default {
        */
       calendarHeight: 0,
       resetTypedDate: new Date(),
-      utils: constructedDateUtils,
+      utils: constructedDateUtils
     };
   },
   watch: {
@@ -198,7 +198,7 @@ export default {
     },
     initialView() {
       this.setInitialView();
-    },
+    }
   },
   computed: {
     computedInitialView() {
@@ -218,7 +218,7 @@ export default {
 
     calendarStyle() {
       return {
-        position: this.isInline ? "static" : undefined,
+        position: this.isInline ? "static" : undefined
       };
     },
     isOpen() {
@@ -229,7 +229,7 @@ export default {
     },
     isRtl() {
       return this.translation.rtl === true;
-    },
+    }
   },
   methods: {
     /**
@@ -263,7 +263,11 @@ export default {
       const initialView = this.computedInitialView;
       if (!this.allowedToShowView(initialView)) {
         throw new Error(
-          `initialView '${this.initialView}' cannot be rendered based on minimum '${this.minimumView}' and maximum '${this.maximumView}'`
+          `initialView '${
+            this.initialView
+          }' cannot be rendered based on minimum '${
+            this.minimumView
+          }' and maximum '${this.maximumView}'`
         );
       }
       switch (initialView) {
@@ -332,17 +336,16 @@ export default {
      * @param {Number} timestamp
      */
     setDate(timestamp) {
-      // const date = new Date(timestamp);
-      // this.selectedDate = date;
-      // this.setPageDate(date);
-      // this.$emit("selected", date);
-      // this.$emit("input", date);
+      const date = new Date(timestamp);
+      this.selectedDate = date;
+      this.setPageDate(date);
+      this.$emit("selected", date);
+      this.$emit("input", date);
     },
     /**
      * Clear the selected date
      */
     clearDate() {
-      console.log("clear");
       this.selectedDate = null;
       this.setPageDate();
       this.$emit("selected", null);
@@ -396,19 +399,17 @@ export default {
      * @param {Date|String|Number|null} date
      */
     setValue(date) {
-      console.log("1");
-      // if (typeof date === "string" || typeof date === "number") {
-      //   let parsed = new Date(date);
-      //   console.log("2");
-      //   date = isNaN(parsed.valueOf()) ? null : parsed;
-      // }
-      // if (!date) {
-      //   this.setPageDate();
-      //   this.selectedDate = null;
-      //   return;
-      // }
-      // this.selectedDate = date;
-      // this.setPageDate(date);
+      if (typeof date === "string" || typeof date === "number") {
+        let parsed = new Date(date);
+        date = isNaN(parsed.valueOf()) ? null : parsed;
+      }
+      if (!date) {
+        this.setPageDate();
+        this.selectedDate = null;
+        return;
+      }
+      this.selectedDate = date;
+      this.setPageDate(date);
     },
     /**
      * Sets the date that the calendar should open on
@@ -434,22 +435,20 @@ export default {
      * Set the date from a typedDate event
      */
     setTypedDate(date) {
-      //   console.log("set typed");
-      //   this.setDate(date.getTime());
+      this.setDate(date.getTime());
     },
     /**
      * Close all calendar layers
      * @param {Boolean} emitEvent - emit close event
      */
     close(emitEvent) {
-      // console.log("clsied");
-      // this.showDayView = this.showMonthView = this.showYearView = false;
-      // if (!this.isInline) {
-      //   if (emitEvent) {
-      //     this.$emit("closed");
-      //   }
-      //   document.removeEventListener("click", this.clickOutside, false);
-      // }
+      this.showDayView = this.showMonthView = this.showYearView = false;
+      if (!this.isInline) {
+        if (emitEvent) {
+          this.$emit("closed");
+        }
+        document.removeEventListener("click", this.clickOutside, false);
+      }
     },
     /**
      * Initiate the component
@@ -461,14 +460,14 @@ export default {
       if (this.isInline) {
         this.setInitialView();
       }
-    },
+    }
   },
   mounted() {
     this.init();
-  },
+  }
 };
 // eslint-disable-next-line
 </script>
 <style lang="stylus">
-@import '../styles/style';
+@import '../styles/style'
 </style>
