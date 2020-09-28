@@ -442,6 +442,7 @@ export default {
      * @param {Boolean} emitEvent - emit close event
      */
     close(emitEvent) {
+      console.warn("close!");
       this.showDayView = this.showMonthView = this.showYearView = false;
       if (!this.isInline) {
         if (emitEvent) {
@@ -463,6 +464,7 @@ export default {
     }
   },
   mounted() {
+    console.warn("mounted!");
     this.init();
   }
 };
