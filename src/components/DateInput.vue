@@ -86,25 +86,25 @@ export default {
   },
   computed: {
     formattedValue() {
-      console.log("format 1");
+      alert("format 1");
       if (!this.selectedDate) {
-        console.log("format 2");
+        alert("format 2");
         return null;
       }
       if (this.typedDate) {
-        console.log("format 3");
+        alert("format 3");
         return this.typedDate;
       }
-      console.log("format 4");
+      alert("format 4");
       let per = this.format(this.selectedDate);
-      console.log(per);
+      alert(per);
 
       let hans = this.utils.formatDate(
         new Date(this.selectedDate),
         this.format,
         this.translation
       );
-      console.log(hans);
+      alert(hans);
       return typeof this.format === "function"
         ? this.format(this.selectedDate)
         : this.utils.formatDate(
@@ -126,7 +126,7 @@ export default {
   },
   watch: {
     resetTypedDate() {
-      console.log("reset");
+      alert("reset");
       this.typedDate = false;
     },
   },
@@ -140,7 +140,7 @@ export default {
      */
     parseTypedDate(event) {
       // close calendar if escape or enter are pressed
-      console.log("1");
+      alert("1");
       if (
         [
           27, // escape
@@ -151,10 +151,10 @@ export default {
       }
 
       if (this.typeable) {
-        console.log("2");
+        alert("2");
         const typedDate = Date.parse(this.input.value);
         if (!isNaN(typedDate)) {
-          console.log("3");
+          alert("3");
           this.typedDate = this.input.value;
           this.$emit("typedDate", new Date(this.typedDate));
         }
@@ -180,7 +180,7 @@ export default {
      * emit a clearDate event
      */
     clearDate() {
-      console.log("clearing");
+      alert("clearing");
       this.$emit("clearDate");
     },
   },
