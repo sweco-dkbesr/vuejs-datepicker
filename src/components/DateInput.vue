@@ -173,7 +173,8 @@ export default {
        * this.typedDate = null
        */
       //}
-
+      alert("lukket");
+      console.log("lukket!");
       this.$emit("closeCalendar");
     },
     /**
