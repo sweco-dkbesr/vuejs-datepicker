@@ -1,14 +1,14 @@
 <template>
-  <div :class="{'input-group' : bootstrapStyling}">
+  <div :class="{ 'input-group': bootstrapStyling }">
     <!-- Calendar Button -->
     <span
       v-if="calendarButton"
       class="vdp-datepicker__calendar-button"
-      :class="{'input-group-prepend' : bootstrapStyling}"
+      :class="{ 'input-group-prepend': bootstrapStyling }"
       @click="showCalendar"
-      v-bind:style="{'cursor:not-allowed;' : disabled}"
+      v-bind:style="{ 'cursor:not-allowed;': disabled }"
     >
-      <span :class="{'input-group-text' : bootstrapStyling}">
+      <span :class="{ 'input-group-text': bootstrapStyling }">
         <i :class="calendarButtonIcon">
           {{ calendarButtonIconContent }}
           <span v-if="!calendarButtonIcon">&hellip;</span>
@@ -38,10 +38,10 @@
     <span
       v-if="clearButton && selectedDate"
       class="vdp-datepicker__clear-button"
-      :class="{'input-group-append' : bootstrapStyling}"
+      :class="{ 'input-group-append': bootstrapStyling }"
       @click="clearDate()"
     >
-      <span :class="{'input-group-text' : bootstrapStyling}">
+      <span :class="{ 'input-group-text': bootstrapStyling }">
         <i :class="clearButtonIcon">
           <span v-if="!clearButtonIcon">&times;</span>
         </i>
@@ -148,14 +148,14 @@ export default {
      * called once the input is blurred
      */
     inputBlurred() {
-      if (this.typeable && isNaN(Date.parse(this.input.value))) {
-        /**
-         *removed by DKLRAS because isNAN returns true on danish locale
-         * this.clearDate()
-         * this.input.value = null
-         * this.typedDate = null
-         */
-      }
+      //if (this.typeable && isNaN(Date.parse(this.input.value))) {
+      /**
+       *removed by DKLRAS because isNAN returns true on danish locale
+       * this.clearDate()
+       * this.input.value = null
+       * this.typedDate = null
+       */
+      //}
 
       this.$emit("closeCalendar");
     },
