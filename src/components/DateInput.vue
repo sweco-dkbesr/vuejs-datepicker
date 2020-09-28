@@ -150,15 +150,15 @@ export default {
         this.input.blur();
       }
 
-      if (this.typeable) {
-        alert("2");
-        const typedDate = Date.parse(this.input.value);
-        if (!isNaN(typedDate)) {
-          alert("3");
-          this.typedDate = this.input.value;
-          this.$emit("typedDate", new Date(this.typedDate));
-        }
-      }
+      // if (this.typeable) {
+      //   alert("2");
+      //   const typedDate = Date.parse(this.input.value);
+      //   if (!isNaN(typedDate)) {
+      //     alert("3");
+      //     this.typedDate = this.input.value;
+      //     this.$emit("typedDate", new Date(this.typedDate));
+      //   }
+      // }
     },
     /**
      * nullify the typed date to defer to regular formatting

@@ -332,11 +332,11 @@ export default {
      * @param {Number} timestamp
      */
     setDate(timestamp) {
-      const date = new Date(timestamp);
-      this.selectedDate = date;
-      this.setPageDate(date);
-      this.$emit("selected", date);
-      this.$emit("input", date);
+      // const date = new Date(timestamp);
+      // this.selectedDate = date;
+      // this.setPageDate(date);
+      // this.$emit("selected", date);
+      // this.$emit("input", date);
     },
     /**
      * Clear the selected date
@@ -397,18 +397,18 @@ export default {
      */
     setValue(date) {
       console.log("1");
-      if (typeof date === "string" || typeof date === "number") {
-        let parsed = new Date(date);
-        console.log("2");
-        date = isNaN(parsed.valueOf()) ? null : parsed;
-      }
-      if (!date) {
-        this.setPageDate();
-        this.selectedDate = null;
-        return;
-      }
-      this.selectedDate = date;
-      this.setPageDate(date);
+      // if (typeof date === "string" || typeof date === "number") {
+      //   let parsed = new Date(date);
+      //   console.log("2");
+      //   date = isNaN(parsed.valueOf()) ? null : parsed;
+      // }
+      // if (!date) {
+      //   this.setPageDate();
+      //   this.selectedDate = null;
+      //   return;
+      // }
+      // this.selectedDate = date;
+      // this.setPageDate(date);
     },
     /**
      * Sets the date that the calendar should open on
@@ -434,23 +434,22 @@ export default {
      * Set the date from a typedDate event
      */
     setTypedDate(date) {
-      console.log("set typed");
-
-      this.setDate(date.getTime());
+      //   console.log("set typed");
+      //   this.setDate(date.getTime());
     },
     /**
      * Close all calendar layers
      * @param {Boolean} emitEvent - emit close event
      */
     close(emitEvent) {
-      console.log("clsied");
-      this.showDayView = this.showMonthView = this.showYearView = false;
-      if (!this.isInline) {
-        if (emitEvent) {
-          this.$emit("closed");
-        }
-        document.removeEventListener("click", this.clickOutside, false);
-      }
+      // console.log("clsied");
+      // this.showDayView = this.showMonthView = this.showYearView = false;
+      // if (!this.isInline) {
+      //   if (emitEvent) {
+      //     this.$emit("closed");
+      //   }
+      //   document.removeEventListener("click", this.clickOutside, false);
+      // }
     },
     /**
      * Initiate the component
