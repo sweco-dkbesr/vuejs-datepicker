@@ -435,6 +435,7 @@ export default {
      */
     setTypedDate(date) {
       console.log("set typed");
+
       this.setDate(date.getTime());
     },
     /**
