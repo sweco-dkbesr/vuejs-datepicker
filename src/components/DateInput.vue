@@ -175,14 +175,14 @@ export default {
       //}
       alert("lukket");
       console.log("lukket!");
-      this.$emit("closeCalendar");
+      //this.$emit("closeCalendar");
     },
     /**
      * emit a clearDate event
      */
     clearDate() {
       alert("clearing");
-      this.$emit("clearDate");
+      // this.$emit("clearDate");
     },
   },
   mounted() {
